@@ -1,21 +1,21 @@
 {
-    "name": "Micro_Pos",
-    "short_name": "Micro_Pos",
+    "name": "Mi Aplicación",
+    "short_name": "App",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
-    "description": " PWA",
+    "description": "Descripción de mi PWA",
     "icons": [
       {
-        "src": "/icons/icon-192x192.png",
+        "src": "assets/img/microsystem.png",
         "sizes": "192x192",
-        "type": "assets/img/microsystem.png"
+        "type": "image/png"
       },
       {
-        "src": "/icons/icon-512x512.png",
+        "src": "assets/img/microsystem.png",
         "sizes": "512x512",
-        "type": "assets/img/microsystem.png"
+        "type": "image/png"
       }
     ]
   }
