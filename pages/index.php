@@ -20,24 +20,18 @@
     </header>
 
 
-
-    <!-- Footer con 5 opciones e iconos -->
-
-    <!-- Footer con 5 opciones e iconos mejorado y sobremarcado -->
     <!-- Footer con 5 opciones e iconos mejorado y sobremarcado usando Tailwind CSS -->
     <footer class="bg-white shadow-lg fixed bottom-0 w-full">
         <div class="container mx-auto">
             <ul class="flex justify-between p-4 text-gray-800">
-                <!-- Botón de Pagos -->
+                <!-- Botones de navegación con iconos -->
                 <li class="text-center">
                     <a href="#pagos" class="flex flex-col items-center p-2 text-blue-600 border-b-4 border-blue-600">
-                        <!-- Reemplazamos el SVG con una imagen -->
                         <img src="../assets/img/892232.png" alt="Pagos" class="w-8 h-8 mb-1" />
                         <span class="text-sm font-semibold">Pagos</span>
                     </a>
                 </li>
-
-
+                <!-- Otros botones... -->
                 <!-- Botón de Solicitud -->
                 <li class="text-center">
                     <a href="#story"
@@ -47,7 +41,6 @@
                         <span class="text-sm font-semibold">Solicitud</span>
                     </a>
                 </li>
-
                 <!-- Botón de Historial -->
                 <li class="text-center">
                     <a href="#story"
@@ -57,7 +50,6 @@
                         <span class="text-sm font-semibold">Historial</span>
                     </a>
                 </li>
-
                 <!-- Botón de Clientes -->
                 <li class="text-center">
                     <a href="#clients"
@@ -67,7 +59,6 @@
                         <span class="text-sm font-semibold">Clientes</span>
                     </a>
                 </li>
-
                 <!-- Botón de Perfil -->
                 <li class="text-center">
                     <a href="#exit"
@@ -77,10 +68,10 @@
                         <span class="text-sm font-semibold">Salir</span>
                     </a>
                 </li>
-
             </ul>
         </div>
     </footer>
+
 
 
 </body>
