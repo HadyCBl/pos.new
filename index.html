@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión</title>
     <link href="./dist/output.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
     <style>
         body {
             background: linear-gradient(45deg, #00c6ff, #3a7bd5, #663399);
@@ -77,5 +78,18 @@
         </div>
     </div>
 </body>
-
 </html>
+<script>
+    if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('ServiceWorker registrado: ', registration);
+      })
+      .catch((registrationError) => {
+        console.log('ServiceWorker no registrado: ', registrationError);
+      });
+  });
+}
+
+</script>
