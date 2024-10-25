@@ -35,7 +35,7 @@
         <div class="container mx-auto">
             <ul class="flex justify-between p-4 text-gray-800">
                 <li class="text-center">
-                    <a href="#" class="flex flex-col items-center p-2 text-blue-600 border-b-4 border-blue-600">
+                    <a href="../payments/index.php" class="flex flex-col items-center p-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 ease-in-out border-b-4 border-transparent hover:border-blue-600">
                         <img src="../../assets/img/892232.png" alt="Pagos" class="w-8 h-8 mb-1" />
                         <span class="text-sm font-semibold">Pagos</span>
                     </a>
@@ -49,7 +49,7 @@
                 </li>
                 <li class="text-center">
                     <a href="../history/index.php"
-                        class="flex flex-col items-center p-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 ease-in-out border-b-4 border-transparent hover:border-blue-600">
+                    class="flex flex-col items-center p-2 text-blue-600 border-b-4 border-blue-600">
                         <img src="../../assets/img/clock_ico.png" alt="Pagos" class="w-8 h-8 mb-1" />
                         <span class="text-sm font-semibold">Historial</span>
                     </a>
