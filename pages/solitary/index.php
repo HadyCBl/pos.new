@@ -7,16 +7,38 @@
     <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/microsystem.png">
     <title>Pagos</title>
     <link href="../../dist/output.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-    /* Transición suave al mostrar/ocultar el footer */
-    footer {
-        transition: transform 0.3s ease-in-out;
-    }
+        /* Transición suave al mostrar/ocultar el footer */
+        footer {
+            transition: transform 0.3s ease-in-out;
+        }
 
-    /* Ocultar footer */
-    .footer-hidden {
-        transform: translateY(100%);
-    }
+        /* Ocultar footer */
+        .footer-hidden {
+            transform: translateY(100%);
+        }
+
+        /* Estilos del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -29,13 +51,21 @@
         </div>
     </header>
 
+    <button id="generate-pdf" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Generar PDF
+    </button>
 
-    <button data-tooltip-target="tooltip-animation" type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Animated
-        tooltip</button>
-
-
-
+    <!-- Modal para visualizar PDF -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <h2>PDF Generado</h2>
+            <iframe id="pdfViewer" style="width: 100%; height: 400px;" frameborder="0"></iframe>
+            <br>
+            <button id="downloadPdf" class="text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5">Descargar PDF</button>
+            <button id="printPdf" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5">Imprimir PDF</button>
+            <button id="closeModal" class="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">Cerrar</button>
+        </div>
+    </div>
 
     <!-- Footer con 5 opciones e iconos -->
     <footer id="footer" class="bg-white shadow-lg fixed bottom-0 w-full">
@@ -80,20 +110,56 @@
     </footer>
 
     <script>
-    let lastScrollTop = 0;
-    const footer = document.getElementById('footer');
+        const { jsPDF } = window.jspdf;
 
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        document.getElementById('generate-pdf').addEventListener('click', () => {
+            const doc = new jsPDF();
+            doc.text("prueba", 10, 10);
 
-        // Si el usuario baja la página
-        if (scrollTop > lastScrollTop) {
-            footer.classList.add('footer-hidden'); // Ocultar footer
-        } else {
-            footer.classList.remove('footer-hidden'); // Mostrar footer
-        }
-        lastScrollTop = scrollTop; 
-    });
+            // Guardar el PDF como blob
+            const pdfBlob = doc.output('blob');
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+
+            // Mostrar el PDF en el modal
+            const pdfViewer = document.getElementById('pdfViewer');
+            pdfViewer.src = pdfUrl;
+            document.getElementById('pdfModal').style.display = 'flex';
+        });
+
+        document.getElementById('downloadPdf').addEventListener('click', () => {
+            const doc = new jsPDF();
+            doc.text("prueba", 10, 10);
+            doc.save("documento.pdf");
+        });
+
+        document.getElementById('printPdf').addEventListener('click', () => {
+            const pdfBlob = new jsPDF();
+            pdfBlob.text("prueba", 10, 10);
+            const pdfUrl = URL.createObjectURL(pdfBlob.output('blob'));
+            const printWindow = window.open(pdfUrl);
+            printWindow.print();
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('pdfModal').style.display = 'none';
+            // Eliminar el objeto URL para liberar memoria
+            URL.revokeObjectURL(document.getElementById('pdfViewer').src);
+        });
+
+        let lastScrollTop = 0;
+        const footer = document.getElementById('footer');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Si el usuario baja la página
+            if (scrollTop > lastScrollTop) {
+                footer.classList.add('footer-hidden'); // Ocultar footer
+            } else {
+                footer.classList.remove('footer-hidden'); // Mostrar footer
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Para Mobile or negative scrolling
+        });
     </script>
 </body>
 
